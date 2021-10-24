@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+
+
+\title{ClickHouse OLAP DBMS for stocks analytics}
+\author{Andrey Volkov}
+\date{Moscow 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Project goal}
+
+To demonstrate the possibilities of OLAP DBMS ClickHouse for storing and processing stock data of companies from S\&P 500 rating using Grafana and Android application.
+
+\section{Group members}
+\begin{itemize}
+    \item Andrey Volkov
+    \item Asgar Zagitov
+    \item Alina Kolchanova
+\end{itemize}
+
+\section{Project description}
+
+The project allows users to see stocks data from S\&P 500 rating in two formats: Grafana dashboard and Android App. The data is stored in DBMS ClickHouse.
+
+\subsection{Components}
+
+The project consists of several applications/servers:
+
+\begin{itemize}
+    \item \textbf{ClickHouse server} - main server of ClickHouse DBMS
+    \item \textbf{ClickHouse metrics exporter}
+    \item \textbf{Prometheus} - storage for ClickHouse metrics
+    \item \textbf{Grafana} - tool for visualization stocks time series
+    \item \textbf{Loader} - back-end application that saves data to ClickHouse in real time
+    \item \textbf{Reader} - back-end application that executes queries in ClickHouse by requests from Android App
+    \item \textbf{Android App} - application that shows stats \& charts based on the result from Reader
+\end{itemize}
+
+\subsection{Data}
+
+Data: S\&P 500 stock data \href{https://www.kaggle.com/kp4920/s-p-500-stock-data-time-series-analysis/data?select=all_stocks_5yr.csv}{(Kaggle link)}.
+
+\subsection{Applications functionalities}
+
+\begin{itemize}
+    \item \textbf{Loader}
+    
+    \begin{enumerate}
+        \item loads dataset of S\&P 500 stock data
+        \item inserts the data to ClickHouse server
+    \end{enumerate}
+    
+    \item \textbf{Reader}
+    
+    \begin{enumerate}
+        \item receives requests from Android App
+        \item selects data from ClickHouse
+        \item map data to special format
+        \item returns data to Android App
+    \end{enumerate}
+    
+\end{itemize}
+
+\subsection{UI functionalities}
+
+The user will be provided with 2 interfaces to access stocks data stored in ClickHouse - Grafana \& Android App. The functionality of these interfaces will be the following:
+
+\begin{enumerate}
+    \item user selects the date range
+    \item user selects the companies (one or more in the list of 500 companies)
+    \item user discover the charts on \textit{open}, \textit{high}, \textit{low}, \textit{close} prices for selected companies
+\end{enumerate}
+
+\section{Project planning}
+
+\begin{enumerate}
+    \item 1 week - prepare project infrastructure
+    \item 2 weeks - design ClickHouse tables (check different options and make the most effective design decision)
+    \item 1 week - develop Loader application
+    \item 1 week - develop Reader application
+    \item 1 weeks - develop Android application
+    \item 1 week - test all project components
+\end{enumerate}
+
+\end{document}
