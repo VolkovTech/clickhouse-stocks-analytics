@@ -33,13 +33,13 @@ object Spring {
     const val dependencyManagement = "io.spring.dependency-management"
 
     object Cloud {
-        const val version = "2020.0.0"
+        const val version = "2020.0.4"
         const val group = "${Spring.group}.cloud"
         const val dependencies = "$group:spring-cloud-dependencies:$version"
     }
 
     object Boot {
-        const val version = "2.4.3"
+        const val version = "2.5.6"
         const val group = "${Spring.group}.boot"
         const val starterDataJpa = "$group:spring-boot-starter-data-jpa"
         const val starterWebServices = "$group:spring-boot-starter-web-services"
@@ -90,6 +90,11 @@ object Common {
     const val jacksonModuleKotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0"
     const val apacheCommonLang = "org.apache.commons:commons-lang3:3.7"
     const val logback = "net.logstash.logback:logstash-logback-encoder:5.2"
+}
+
+object ClickHouse {
+    const val clickHouseJdbc = "ru.yandex.clickhouse:clickhouse-jdbc:0.3.1"
+    const val clickHouseTestContainer = "org.testcontainers:clickhouse:1.16.2"
 }
 
 fun PluginDependenciesSpec.kotlinPlugin(plugin: String): PluginDependencySpec = kotlin(plugin).version(Kotlin.version)

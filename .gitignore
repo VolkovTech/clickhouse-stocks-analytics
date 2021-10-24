@@ -36,4 +36,8 @@ out/
 .vscode/
 
 # docker compose
-.docker/prometheus
+.docker/prometheus/data
+
+# internal project
+clickhouse-stocks/.gradle
+clickhouse-stocks/buildSrc/.gradle

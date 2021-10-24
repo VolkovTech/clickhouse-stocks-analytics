@@ -1,0 +1,9 @@
+<yandex>
+  <users>
+    <admin>
+      <password>admin</password>
+      <profile>default</profile>
+      <quota>default</quota>
+    </admin>
+  </users>
+</yandex>
