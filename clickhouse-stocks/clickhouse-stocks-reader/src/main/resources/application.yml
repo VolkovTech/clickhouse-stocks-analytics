@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: clickhouse-stocks-reader
+
+server:
+  port: 8070
+  servlet:
+    context-path: /${spring.application.name}
+
+management:
+  endpoints.web.exposure.include: '*'
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.client.requests: true
+      percentiles:
+        http.client.requests: 0.50,0.75,0.95,0.99
+    tags:
+      application: ${spring.application.name}
+
+logging:
+  level:
+    tech.volkov.nile: debug
