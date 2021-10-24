@@ -80,15 +80,12 @@ subprojects {
         implementation(Spring.Boot.starterWebServices)
         implementation(Spring.Boot.starterActuator)
 
+        // clickhouse
+        implementation(ClickHouse.clickHouseJdbc)
+        testImplementation(ClickHouse.clickHouseTestContainer)
+
         runtimeOnly(Common.Libraries.Metrics.micrometer)
-
         implementation(Common.jacksonModuleKotlin)
-
-        // annotation processing
-        implementation(group = "com.squareup", name = "kotlinpoet", version = "1.7.2")
-        implementation(group = "com.google.auto.service", name = "auto-service", version = "1.0-rc7")
-        kapt(group = "com.google.auto.service", name = "auto-service", version = "1.0-rc7")
-
         implementation(Common.Libraries.OpenApi.dependency)
 
         // utils

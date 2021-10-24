@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  clickhouse:
+    image: yandex/clickhouse-server:21.8.10
+    ports:
+      - 8123:8123
+      - 9000:9000
+    volumes:
+      - ./clickhouse/users.xml:/etc/clickhouse-server/users.d/users.xml
+      - ./clickhouse/config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./clickhouse/schema.sql:/docker-entrypoint-initdb.d/0-schema.sql
+      - ./clickhouse/sample-data.sql:/docker-entrypoint-initdb.d/99-sample-data.sql
+  clickhouse-exporter:
+    image: f1yegor/clickhouse-exporter
+    ports:
+      - 9116:9116
+    command: -scrape_uri=http://host.docker.internal:8123
+  grafana:
+    image: grafana/grafana:8.2.2
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=password
+  prometheus:
+    image: prom/prometheus:v2.30.3
+    ports:
+      - 4000:4000
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus:/prometheus
+    command: --config.file=/etc/prometheus/prometheus.yml --log.level=debug
