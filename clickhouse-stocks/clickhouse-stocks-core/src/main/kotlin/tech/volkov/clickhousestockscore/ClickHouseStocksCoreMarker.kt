@@ -1,0 +1,3 @@
+package tech.volkov.clickhousestockscore
+
+class ClickHouseStocksCoreMarker

@@ -1,0 +1,11 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+detekt {
+    config = files("$scriptsDir/checkstyle/detekt.yml")
+    toolVersion = Detect.version
+    autoCorrect = true
+    input = files("src/main/kotlin", "src/test/kotlin")
+}
+
+dependencies {
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${Detect.version}"
+}
