@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ClickHouseStocks</string>
+
+    <string name="nav_item_charts">Charts</string>
+    <string name="nav_item_aggregation">Aggregation</string>
+</resources>

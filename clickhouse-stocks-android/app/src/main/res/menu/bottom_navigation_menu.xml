@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/nav_item_charts"
+          android:icon="@drawable/icon_charts"
+          android:id="@+id/nav_item_charts"/>
+    <item android:title="@string/nav_item_aggregation"
+          android:icon="@drawable/icon_aggregation"
+          android:id="@+id/nav_item_aggregation"/>
+</menu>
