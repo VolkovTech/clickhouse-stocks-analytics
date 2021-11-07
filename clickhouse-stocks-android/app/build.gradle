@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: "kotlin-kapt"
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "tech.volkov.clickhousestocks"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // Moxy
+    implementation 'com.github.moxy-community:moxy:2.2.2'
+    implementation 'com.github.moxy-community:moxy-app-compat:2.2.2'
+    kapt 'com.github.moxy-community:moxy-compiler:2.2.2'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
+    // JSON Converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    // Bottom Navigation View
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+
+    // Android Design
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+
+    // Circle image view
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    // Dagger 2
+    implementation 'com.google.dagger:dagger:2.40'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.40'
+    kapt 'com.google.dagger:dagger-compiler:2.40'
+
+    // Toasty
+    implementation 'com.github.GrenderG:Toasty:1.5.2'
+
+    // JSON Klaxon parser
+    implementation 'com.beust:klaxon:5.0.1'
+
+    // Kotlin Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+}

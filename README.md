@@ -10,6 +10,7 @@ of companies from S&P 500 rating using Grafana and Android application.
 - Andrey Volkov
 - Asgar Zagitov
 - Alina Kolchanova
+- Liana Batalova
 
 ## Project description
 

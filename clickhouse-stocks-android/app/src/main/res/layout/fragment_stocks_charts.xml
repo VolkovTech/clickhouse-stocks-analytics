@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/chartsStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_edittext_start"
+            android:hint="Start date"
+            android:padding="10dp"
+            android:textCursorDrawable="@null" />
+
+        <EditText
+            android:id="@+id/chartsEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_edittext_middle"
+            android:hint="End date"
+            android:padding="10dp"
+            android:textCursorDrawable="@null" />
+
+        <Spinner
+            android:id="@+id/chartsCompanySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_edittext_end"
+            android:padding="10dp"
+            android:textCursorDrawable="@null" />
+
+        <Button
+            android:id="@+id/chartsSearchButton"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_button"
+            android:text="Search"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
