@@ -8,7 +8,9 @@ import tech.volkov.clickhousestockscore.ClickHouseStocksCoreMarker
 
 @SpringBootApplication(
     exclude = [DataSourceAutoConfiguration::class],
-    scanBasePackageClasses = [ClickHouseStocksCoreMarker::class]
+    scanBasePackageClasses = [ClickHouseStocksCoreMarker::class],
+    scanBasePackages = ["tech.volkov.clickhousestockscore",
+                        "tech.volkov.clickhousestocksloader"]
 )
 class ClickHouseStocksLoaderApplication
 

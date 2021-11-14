@@ -8,4 +8,5 @@ plugins {
 
 dependencies {
     implementation(project(":clickhouse-stocks-core"))
+    implementation("com.opencsv:opencsv:4.6")
 }

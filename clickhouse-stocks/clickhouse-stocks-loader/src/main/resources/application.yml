@@ -21,3 +21,12 @@ management:
 logging:
   level:
     tech.volkov.nile: debug
+
+clickhouse:
+  username: admin
+  password: admin
+  jdbcUrl: jdbc:clickhouse://localhost:8123
+  table: stocks_analytics.stocks
+
+loader:
+  batchSize: 10000
