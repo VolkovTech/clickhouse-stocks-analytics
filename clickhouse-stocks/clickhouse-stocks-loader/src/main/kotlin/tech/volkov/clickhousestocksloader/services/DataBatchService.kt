@@ -1,14 +1,14 @@
-package tech.volkov.clickhousestocksloader.processors
+package tech.volkov.clickhousestocksloader.services
 
 import com.opencsv.CSVReader
+import tech.volkov.clickhousestockscore.entity.CLICKHOUSE_DATE_FORMAT
 import tech.volkov.clickhousestockscore.entity.StockEntity
 import java.io.Reader
 import java.lang.NumberFormatException
 import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.Date
 
-class DataBatchProcessor {
+class DataBatchService {
 
     fun forEachBatch(reader: Reader, batchSize: Int, process: (List<StockEntity>) -> Unit): Long {
         val csvReader = CSVReader(reader)
@@ -53,7 +53,7 @@ class DataBatchProcessor {
     private fun Map<String, String>.parseDateField(fieldName: String, defaultValue: Date): Date =
         this.parseField(fieldName, defaultValue) {
             try {
-                FORMATTER.parse(it)
+                CLICKHOUSE_DATE_FORMAT.parse(it)
             } catch (e: ParseException) {
                 defaultValue
             }
@@ -74,9 +74,5 @@ class DataBatchProcessor {
             value != null -> parser(value)
             else -> defaultValue
         }
-    }
-
-    companion object {
-        val FORMATTER: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
     }
 }

@@ -30,3 +30,9 @@ clickhouse:
 
 loader:
   batchSize: 10000
+
+generator:
+  enabled: true
+  dateStart: '2012-08-13'
+  dateEnd: '2017-08-11'
+  companiesCount: 100

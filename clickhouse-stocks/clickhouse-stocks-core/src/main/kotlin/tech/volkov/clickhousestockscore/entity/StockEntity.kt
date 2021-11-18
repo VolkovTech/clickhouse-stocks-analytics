@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 private const val CLICKHOUSE_DATE_PATTERN = "yyyy-MM-dd"
-private val CLICKHOUSE_DATE_FORMAT = SimpleDateFormat(CLICKHOUSE_DATE_PATTERN)
+val CLICKHOUSE_DATE_FORMAT = SimpleDateFormat(CLICKHOUSE_DATE_PATTERN)
 
 data class StockEntity(
     val company: String,
