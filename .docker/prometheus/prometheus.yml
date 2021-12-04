@@ -11,7 +11,7 @@ scrape_configs:
   - job_name: 'clickhouse-stocks-reader'
     metrics_path: 'clickhouse-stocks-reader/actuator/prometheus'
     static_configs:
-      - targets: ['host.docker.internal:8070']
+      - targets: [ 'host.docker.internal:8070' ]
   - job_name: 'clickhouse'
     metrics_path: '/metrics'
     static_configs:

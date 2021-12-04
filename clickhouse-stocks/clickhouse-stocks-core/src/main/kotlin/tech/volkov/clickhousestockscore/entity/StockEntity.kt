@@ -11,7 +11,7 @@ val CLICKHOUSE_DATE_FORMAT = SimpleDateFormat(CLICKHOUSE_DATE_PATTERN)
 data class StockEntity(
     val company: String,
     @JsonFormat(pattern = CLICKHOUSE_DATE_PATTERN)
-    val date: Date,
+    val date: Date?,
     val open: Float,
     val high: Float,
     val low: Float,
@@ -19,9 +19,9 @@ data class StockEntity(
     val volume: Float
 )
 
-fun ResultSet.toStockEntity() = StockEntity(
+fun ResultSet.toStockEntity(isDateExcluded: Boolean = false) = StockEntity(
     company = getString("company"),
-    date = CLICKHOUSE_DATE_FORMAT.parse(getString("date")),
+    date = if (!isDateExcluded) CLICKHOUSE_DATE_FORMAT.parse(getString("date")) else null,
     open = getFloat("open"),
     high = getFloat("high"),
     low = getFloat("low"),

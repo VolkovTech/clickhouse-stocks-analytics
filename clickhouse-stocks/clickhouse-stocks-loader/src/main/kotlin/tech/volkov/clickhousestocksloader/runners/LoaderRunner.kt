@@ -40,9 +40,9 @@ class LoaderRunner(
         companiesExists: MutableSet<String>
     ) {
         batch.forEach { stockEntity ->
-            if (stockEntity.date.after(CLICKHOUSE_DATE_FORMAT.parse(generatorProperties.dateStart)) &&
-                stockEntity.date.before(CLICKHOUSE_DATE_FORMAT.parse(generatorProperties.dateEnd))) {
-                availableDates.add(stockEntity.date)
+            if (stockEntity.date!!.after(CLICKHOUSE_DATE_FORMAT.parse(generatorProperties.dateStart)) &&
+                stockEntity.date!!.before(CLICKHOUSE_DATE_FORMAT.parse(generatorProperties.dateEnd))) {
+                availableDates.add(stockEntity.date!!)
             }
             companiesExists.add(stockEntity.company)
         }

@@ -18,13 +18,9 @@ management:
     tags:
       application: ${spring.application.name}
 
-logging:
-  level:
-    tech.volkov.nile: debug
-
 clickhouse:
   username: admin
-  password: admin
+  password: password
   jdbcUrl: jdbc:clickhouse://localhost:8123
   table: stocks_analytics.stocks
 
@@ -36,3 +32,7 @@ generator:
   dateStart: '2012-08-13'
   dateEnd: '2017-08-11'
   companiesCount: 100
+
+logging:
+  level:
+    tech.volkov: debug

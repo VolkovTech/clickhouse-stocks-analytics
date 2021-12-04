@@ -8,4 +8,6 @@ plugins {
 
 dependencies {
     implementation(project(":clickhouse-stocks-core"))
+
+    implementation(group = "org.springdoc", name = "springdoc-openapi-ui")
 }
