@@ -11,17 +11,17 @@ import tech.volkov.clickhousestocksreader.dto.StocksSearchDto
 import tech.volkov.clickhousestocksreader.service.ClickHouseStocksService
 
 @RestController
-@RequestMapping("/api/v1")
-class ClickHouseController(
+@RequestMapping("/api/v1/stocks")
+class StocksController(
     private val clickHouseStocksService: ClickHouseStocksService
 ) {
 
-    @GetMapping("stocks")
+    @GetMapping
     fun getStocks(@RequestBody stocksSearchDto: StocksSearchDto): Map<String, List<StockDto>> {
         return clickHouseStocksService.getStocks(stocksSearchDto)
     }
 
-    @GetMapping("stocks/aggregation")
+    @GetMapping("aggregation")
     fun getStocksAggregation(
         @RequestBody stocksAggregatedSearchDto: StocksAggregatedSearchDto
     ): Map<String, AggregatedResultDto> {
