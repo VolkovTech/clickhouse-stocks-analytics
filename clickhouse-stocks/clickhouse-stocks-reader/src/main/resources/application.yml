@@ -18,6 +18,12 @@ management:
     tags:
       application: ${spring.application.name}
 
+clickhouse:
+  username: admin
+  password: password
+  jdbcUrl: jdbc:clickhouse://localhost:8123
+  table: stocks_analytics.stocks
+
 logging:
   level:
-    tech.volkov.nile: debug
+    tech.volkov: debug

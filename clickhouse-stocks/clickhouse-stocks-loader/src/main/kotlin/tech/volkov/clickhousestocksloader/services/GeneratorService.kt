@@ -10,9 +10,9 @@ class GeneratorService {
     fun generateRows(dates: Set<Date>, companiesExists: Set<String>, companiesCount: Int): List<StockEntity> {
         val companies = generateCompanies(companiesCount, companiesExists)
         var prevValue = randomFloat(MAX_PRICE_VALUE / 2f - BOUND, MAX_PRICE_VALUE / 2f + BOUND)
-        var prevVolume = randomFloat(MAX_VOLUME_VALUE / 2f - BOUND_VOLUME, MAX_VOLUME_VALUE /2f + BOUND_VOLUME)
+        var prevVolume = randomFloat(MAX_VOLUME_VALUE / 2f - BOUND_VOLUME, MAX_VOLUME_VALUE / 2f + BOUND_VOLUME)
         return companies.flatMap { company ->
-            dates.map{ date ->
+            dates.map { date ->
                 val row = generateRow(company, date, prevValue, prevVolume)
                 prevValue = row.close
                 prevVolume = row.volume
