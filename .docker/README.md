@@ -3,6 +3,7 @@
 ## Run docker compose
 
 ```bash
+cd .docker
 sudo chmod -R a+w .
 docker-compose up
 ```

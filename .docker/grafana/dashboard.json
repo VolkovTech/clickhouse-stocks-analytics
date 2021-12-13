@@ -1,0 +1,745 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 2,
+  "id": 9,
+  "iteration": 1639406886837,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 3,
+      "maxDataPoints": null,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "last",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "database": "stocks_analytics",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "toDateTime(date)",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "1d",
+          "intervalFactor": 1,
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    max(high) as high\nFROM $table\n\nWHERE $timeFilter and company in ('YHWSRMQ', 'JRPGDJ', 'WEDS', 'TDYBR', 'CND', 'XVK', 'BVCOQF', 'BFSDSU', 'DSUPZU', 'CLFMUWK')\n\nGROUP BY\n    t,\n    company\nORDER BY high desc\n",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    max(high) as high\nFROM stocks_analytics.stocks\n\nWHERE toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599) and company in ('YHWSRMQ', 'JRPGDJ', 'WEDS', 'TDYBR', 'CND', 'XVK', 'BVCOQF', 'BFSDSU', 'DSUPZU', 'CLFMUWK')\n\nGROUP BY\n    t,\n    company\nORDER BY high desc",
+          "refId": "A",
+          "round": "0s",
+          "skip_comments": true,
+          "table": "stocks",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": "1d",
+      "timeShift": "1d",
+      "title": "MAX High prices [TOP 10]",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 4,
+      "maxDataPoints": null,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "last",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "database": "stocks_analytics",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "toDateTime(date)",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "1d",
+          "intervalFactor": 1,
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    round(abs(high - low), 5) as diff_high_low\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ('YHWSRMQ','JRPGDJ','WEDS','TDYBR','CND','XVK','BVCOQF','BFSDSU','DSUPZU','CLFMUWK')\nGROUP BY\n    t,\n    company,\n    high,\n    low\nORDER BY diff_high_low desc\n",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    round(abs(high - low), 5) as diff_high_low\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599)\n    and company in ('YHWSRMQ','JRPGDJ','WEDS','TDYBR','CND','XVK','BVCOQF','BFSDSU','DSUPZU','CLFMUWK')\nGROUP BY\n    t,\n    company,\n    high,\n    low\nORDER BY diff_high_low desc",
+          "refId": "A",
+          "round": "0s",
+          "skip_comments": true,
+          "table": "stocks",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": "1d",
+      "timeShift": "1d",
+      "title": "High - Low Diff [TOP 10]",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "hideTimeOverride": true,
+      "id": 5,
+      "maxDataPoints": null,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "last",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "database": "stocks_analytics",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "toDateTime(date)",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "1d",
+          "intervalFactor": 1,
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    SUM(volume) as volume\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company\nORDER BY volume desc",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    SUM(volume) as volume\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599)\n    and company in ('A','AAP','ADSK','ADI','ACN')\nGROUP BY\n    t,\n    company\nORDER BY volume desc",
+          "refId": "A",
+          "round": "0s",
+          "skip_comments": true,
+          "table": "stocks",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": "1d",
+      "timeShift": "1d",
+      "title": "Volume [$company]",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "hideTimeOverride": true,
+      "id": 7,
+      "maxDataPoints": null,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "last",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "database": "stocks_analytics",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "toDateTime(date)",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "1d",
+          "intervalFactor": 1,
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    SUM(volume) as volume\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company\nORDER BY volume desc",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    SUM(volume) as volume\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599)\n    and company in ('A','AAP','ADSK','ADI','ACN')\nGROUP BY\n    t,\n    company\nORDER BY volume desc",
+          "refId": "A",
+          "round": "0s",
+          "skip_comments": true,
+          "table": "stocks",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": "1d",
+      "timeShift": "1d",
+      "title": "Volume [$company]",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 21
+      },
+      "hideTimeOverride": true,
+      "id": 6,
+      "maxDataPoints": null,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "last",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "database": "stocks_analytics",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "toDateTime(date)",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "1d",
+          "intervalFactor": 1,
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    quantile(0.75)(high) as high\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company\nORDER BY high desc\n",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    quantile(0.75)(high) as high\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599)\n    and company in ('AAP','AAPL')\nGROUP BY\n    t,\n    company\nORDER BY high desc",
+          "refId": "A",
+          "round": "0s",
+          "skip_comments": true,
+          "table": "stocks",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": "1d",
+      "timeShift": "1d",
+      "title": "Open quantile 0.75 [$company]",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 21
+      },
+      "hideTimeOverride": true,
+      "id": 8,
+      "maxDataPoints": null,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "last",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "database": "stocks_analytics",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "toDateTime(date)",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "1d",
+          "intervalFactor": 1,
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    quantile(0.75)(low) as low\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company\nORDER BY low desc\n",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    quantile(0.75)(low) as low\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599)\n    and company in ('AAP','AAPL')\nGROUP BY\n    t,\n    company\nORDER BY low desc",
+          "refId": "A",
+          "round": "0s",
+          "skip_comments": true,
+          "table": "stocks",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": "1d",
+      "timeShift": "1d",
+      "title": "Low quantile 0.75 [$company]",
+      "transparent": true,
+      "type": "timeseries"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 31,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "stocks_analytics.stocks",
+          "value": "stocks_analytics.stocks"
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "table",
+        "multi": false,
+        "name": "table",
+        "options": [
+          {
+            "selected": true,
+            "text": "stocks_analytics.stocks",
+            "value": "stocks_analytics.stocks"
+          }
+        ],
+        "query": "stocks_analytics.stocks",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "AAP",
+            "AAPL",
+            "ABT",
+            "ADM",
+            "ADBE"
+          ],
+          "value": [
+            "AAP",
+            "AAPL",
+            "ABT",
+            "ADM",
+            "ADBE"
+          ]
+        },
+        "datasource": "ClickHouse",
+        "definition": "select distinct company from $table",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "company",
+        "multi": true,
+        "name": "company",
+        "options": [],
+        "query": "select distinct company from $table",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2014-11-29T07:43:11.779Z",
+    "to": "2015-09-27T09:13:22.416Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "ClickHouse",
+  "uid": "Y_7Z8ulGk",
+  "version": 14
+}
