@@ -7,16 +7,12 @@ scrape_configs:
   - job_name: 'clickhouse-stocks-loader'
     metrics_path: 'clickhouse-stocks-loader/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8060' ]
+      - targets: ['172.17.0.1:8060']
   - job_name: 'clickhouse-stocks-reader'
     metrics_path: 'clickhouse-stocks-reader/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8070' ]
-  - job_name: 'clickhouse'
-    metrics_path: '/metrics'
-    static_configs:
-      - targets: [ 'host.docker.internal:8123' ]
+      - targets: ['172.17.0.1:8070']
   - job_name: 'clickhouse-exporter'
     metrics_path: '/metrics'
     static_configs:
-      - targets: [ 'host.docker.internal:9116' ]
+      - targets: ['172.17.0.1:9116']

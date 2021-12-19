@@ -18,14 +18,15 @@ management:
     tags:
       application: ${spring.application.name}
 
+loader:
+  enabled: true
+  batchSize: 10000
+
 clickhouse:
   username: admin
   password: password
   jdbcUrl: jdbc:clickhouse://localhost:8123
   table: stocks_analytics.stocks
-
-loader:
-  batchSize: 10000
 
 generator:
   enabled: true

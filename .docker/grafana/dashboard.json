@@ -23,7 +23,7 @@
   "gnetId": null,
   "graphTooltip": 2,
   "id": 9,
-  "iteration": 1639406886837,
+  "iteration": 1639409617680,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -118,8 +118,8 @@
           "hide": false,
           "interval": "1d",
           "intervalFactor": 1,
-          "query": "SELECT\n    $timeSeries as t,\n    company,\n    max(high) as high\nFROM $table\n\nWHERE $timeFilter and company in ('YHWSRMQ', 'JRPGDJ', 'WEDS', 'TDYBR', 'CND', 'XVK', 'BVCOQF', 'BFSDSU', 'DSUPZU', 'CLFMUWK')\n\nGROUP BY\n    t,\n    company\nORDER BY high desc\n",
-          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    max(high) as high\nFROM stocks_analytics.stocks\n\nWHERE toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599) and company in ('YHWSRMQ', 'JRPGDJ', 'WEDS', 'TDYBR', 'CND', 'XVK', 'BVCOQF', 'BFSDSU', 'DSUPZU', 'CLFMUWK')\n\nGROUP BY\n    t,\n    company\nORDER BY high desc",
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    max(high) as high\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company\nORDER BY high desc\n",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    max(high) as high\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1388433600) AND toDateTime(date) <= toDateTime(1504213199)\n    and company in ('A','ABC','ACN','AAP','ADBE','ADSK','ADM')\nGROUP BY\n    t,\n    company\nORDER BY high desc",
           "refId": "A",
           "round": "0s",
           "skip_comments": true,
@@ -129,7 +129,7 @@
       ],
       "timeFrom": "1d",
       "timeShift": "1d",
-      "title": "MAX High prices [TOP 10]",
+      "title": "MAX High prices",
       "transparent": true,
       "type": "timeseries"
     },
@@ -224,8 +224,8 @@
           "hide": false,
           "interval": "1d",
           "intervalFactor": 1,
-          "query": "SELECT\n    $timeSeries as t,\n    company,\n    round(abs(high - low), 5) as diff_high_low\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ('YHWSRMQ','JRPGDJ','WEDS','TDYBR','CND','XVK','BVCOQF','BFSDSU','DSUPZU','CLFMUWK')\nGROUP BY\n    t,\n    company,\n    high,\n    low\nORDER BY diff_high_low desc\n",
-          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    round(abs(high - low), 5) as diff_high_low\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599)\n    and company in ('YHWSRMQ','JRPGDJ','WEDS','TDYBR','CND','XVK','BVCOQF','BFSDSU','DSUPZU','CLFMUWK')\nGROUP BY\n    t,\n    company,\n    high,\n    low\nORDER BY diff_high_low desc",
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    round(abs(high - low), 5) as diff_high_low\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company,\n    high,\n    low\nORDER BY diff_high_low desc\n",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    round(abs(high - low), 5) as diff_high_low\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1388433600) AND toDateTime(date) <= toDateTime(1504213199)\n    and company in ('A','ABC','ACN','AAP','ADBE','ADSK','ADM')\nGROUP BY\n    t,\n    company,\n    high,\n    low\nORDER BY diff_high_low desc",
           "refId": "A",
           "round": "0s",
           "skip_comments": true,
@@ -235,7 +235,7 @@
       ],
       "timeFrom": "1d",
       "timeShift": "1d",
-      "title": "High - Low Diff [TOP 10]",
+      "title": "High - Low Diff ",
       "transparent": true,
       "type": "timeseries"
     },
@@ -436,8 +436,8 @@
           "hide": false,
           "interval": "1d",
           "intervalFactor": 1,
-          "query": "SELECT\n    $timeSeries as t,\n    company,\n    SUM(volume) as volume\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company\nORDER BY volume desc",
-          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    SUM(volume) as volume\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1444510800) AND toDateTime(date) <= toDateTime(1451163599)\n    and company in ('A','AAP','ADSK','ADI','ACN')\nGROUP BY\n    t,\n    company\nORDER BY volume desc",
+          "query": "SELECT\n    $timeSeries as t,\n    company,\n    avg(open) as open\nFROM $table\n\nWHERE\n    $timeFilter\n    and company in ($company)\nGROUP BY\n    t,\n    company\nORDER BY open desc",
+          "rawQuery": "SELECT\n    (intDiv(toUInt32(toDateTime(date)), 86400) * 86400) * 1000 as t,\n    company,\n    avg(open) as open\nFROM stocks_analytics.stocks\n\nWHERE\n    toDateTime(date) >= toDateTime(1388433600) AND toDateTime(date) <= toDateTime(1504213199)\n    and company in ('A','ABC','ACN','AAP','ADBE','ADSK','ADM')\nGROUP BY\n    t,\n    company\nORDER BY open desc",
           "refId": "A",
           "round": "0s",
           "skip_comments": true,
@@ -447,7 +447,7 @@
       ],
       "timeFrom": "1d",
       "timeShift": "1d",
-      "title": "Volume [$company]",
+      "title": "Avg Open [$company]",
       "transparent": true,
       "type": "timeseries"
     },
@@ -700,18 +700,22 @@
         "current": {
           "selected": true,
           "text": [
+            "A",
+            "ABC",
+            "ACN",
             "AAP",
-            "AAPL",
-            "ABT",
-            "ADM",
-            "ADBE"
+            "ADBE",
+            "ADSK",
+            "ADM"
           ],
           "value": [
+            "A",
+            "ABC",
+            "ACN",
             "AAP",
-            "AAPL",
-            "ABT",
-            "ADM",
-            "ADBE"
+            "ADBE",
+            "ADSK",
+            "ADM"
           ]
         },
         "datasource": "ClickHouse",
@@ -734,12 +738,12 @@
     ]
   },
   "time": {
-    "from": "2014-11-29T07:43:11.779Z",
-    "to": "2015-09-27T09:13:22.416Z"
+    "from": "2013-12-31T20:00:00.000Z",
+    "to": "2017-09-01T20:59:59.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "ClickHouse",
   "uid": "Y_7Z8ulGk",
-  "version": 14
+  "version": 15
 }

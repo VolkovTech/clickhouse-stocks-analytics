@@ -1,5 +1,6 @@
 package tech.volkov.clickhousestocksloader.configuration
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -10,6 +11,7 @@ import tech.volkov.clickhousestocksloader.runners.LoaderRunner
 import tech.volkov.clickhousestocksloader.services.GeneratorService
 
 @Configuration
+@ConditionalOnProperty("loader.enabled", matchIfMissing = true)
 class LoaderConfiguration {
 
     @Bean

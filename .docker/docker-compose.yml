@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.7'
 
 services:
   clickhouse:
@@ -11,11 +11,19 @@ services:
       - ./clickhouse/config.xml:/etc/clickhouse-server/config.d/config.xml
       - ./clickhouse/schema.sql:/docker-entrypoint-initdb.d/0-schema.sql
       - ./clickhouse/sample-data.sql:/docker-entrypoint-initdb.d/99-sample-data.sql
+    networks:
+      analytics:
+        aliases:
+          - clickhouse
   clickhouse-exporter:
     image: f1yegor/clickhouse-exporter
     ports:
       - 9116:9116
-    command: -scrape_uri=http://host.docker.internal:8123
+    command: -scrape_uri=http://172.17.0.1:8123
+    networks:
+      analytics:
+        aliases:
+          - clickhouse-exporter
   grafana:
     image: grafana/grafana:8.2.2
     ports:
@@ -25,6 +33,10 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=password
+    networks:
+      analytics:
+        aliases:
+          - grafana
   prometheus:
     image: prom/prometheus:v2.30.3
     ports:
@@ -33,3 +45,10 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus:/prometheus
     command: --config.file=/etc/prometheus/prometheus.yml --log.level=debug
+    networks:
+      analytics:
+        aliases:
+          - prometheus
+
+networks:
+  analytics:
