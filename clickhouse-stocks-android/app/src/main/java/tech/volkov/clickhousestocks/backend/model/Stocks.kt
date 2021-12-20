@@ -7,10 +7,7 @@ package tech.volkov.clickhousestocks.backend.model
 data class StocksSearchDto(
     val dateStart: String,
     val dateEnd: String,
-    val companies: List<CompanyDto>,
-    val columns: List<Column> = listOf(
-        Column.OPEN, Column.HIGH, Column.LOW, Column.CLOSE, Column.VOLUME
-    )
+    val companies: List<String>
 )
 
 enum class Column {
@@ -32,6 +29,7 @@ data class StockDto(
  */
 // request
 data class StocksAggregatedSearchDto(
+    // 2016-08-16
     val dateStart: String,
     val dateEnd: String,
     val companies: List<CompanyDto>,

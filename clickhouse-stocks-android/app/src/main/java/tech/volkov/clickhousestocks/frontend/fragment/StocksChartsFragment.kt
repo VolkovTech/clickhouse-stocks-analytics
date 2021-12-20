@@ -57,16 +57,10 @@ class StocksChartsFragment : MvpAppCompatFragment(), StocksChartsView {
 
     override fun fillInCharts(stocks: List<StockDto>) {
         // fill in stocks
+        println("")
     }
 
     override fun showErrorMessage(message: String) {
         Toasty.error(mainActivity, message, Toast.LENGTH_SHORT, true).show()
-
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-            mainActivity,
-            android.R.layout.simple_spinner_item,
-            listOf("Company", "MMM", "APPL")
-        )
-        chartsCompanySpinner.adapter = adapter
     }
 }

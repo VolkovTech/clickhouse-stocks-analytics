@@ -1,6 +1,6 @@
 package tech.volkov.clickhousestocksreader.api
 
-import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -16,12 +16,12 @@ class StocksController(
     private val clickHouseStocksService: ClickHouseStocksService
 ) {
 
-    @GetMapping
+    @PostMapping
     fun getStocks(@RequestBody stocksSearchDto: StocksSearchDto): Map<String, List<StockDto>> {
         return clickHouseStocksService.getStocks(stocksSearchDto)
     }
 
-    @GetMapping("aggregation")
+    @PostMapping("aggregation")
     fun getStocksAggregation(
         @RequestBody stocksAggregatedSearchDto: StocksAggregatedSearchDto
     ): Map<String, AggregatedResultDto> {

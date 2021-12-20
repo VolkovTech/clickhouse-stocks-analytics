@@ -40,7 +40,7 @@ class StocksChartsPresenter : MvpPresenter<StocksChartsView>() {
         dateEnd: String,
         company: String
     ) = uiScope.launch {
-        val stocksSearchDto = StocksSearchDto(dateStart, dateEnd, listOf(CompanyDto(company)))
+        val stocksSearchDto = StocksSearchDto(dateStart, dateEnd, listOf(company))
         when(val stocks = stocksRepository.getStocks(stocksSearchDto)) {
             null -> viewState.showErrorMessage(STOCKS_ERROR_MESSAGE)
             else -> viewState.fillInCharts(stocks[company]!!)

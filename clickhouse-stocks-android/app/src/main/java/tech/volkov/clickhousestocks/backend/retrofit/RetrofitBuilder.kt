@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitBuilder {
     companion object {
-        private const val BASE_URL = "http://localhost:8080/"
+        private const val BASE_URL = "https://6bb74d0ce9a93c.localhost.run/"
         private val builder = Retrofit
             .Builder()
             .baseUrl(BASE_URL)
